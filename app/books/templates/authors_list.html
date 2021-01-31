@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Author List</title>
+</head>
+<body>
+
+{% for author in authors_list %}
+    ID: {{ author.id }}
+    Author: {{ author.first_name }} {{ author.last_name }}
+    Birth: {{ author.date_of_birth }} - {{ author.date_of_death }}
+    Country: {{ author.country }}
+    <a href="{% url 'authors-update' author.id %}">edit</a><br>
+{% endfor %}
+
+
+
+</body>
+</html>
