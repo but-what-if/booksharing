@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Books List</title>
+</head>
+<body>
+
+{% for book in books_list %}
+    ID: {{ book.id }} Author: {{ book.author }} Title: {{ book.title }}
+    <a href="{% url 'books-update' book.id %}">edit</a> <br>
+{% endfor %}
+
+
+</body>
+</html>
