@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 
 
-from books.models import Book, Author
+from books.models import Book, Author, Log
 from books.forms import BookForm, AuthorForm
 
 
@@ -111,3 +111,10 @@ def authors_delete(request, pk):
     instance = get_object_or_404(Author, pk=pk)
     instance.delete()
     return redirect('authors-list')
+
+
+def logs_list(request):
+    context = {
+        'logs_list': Log.objects.all()
+    }
+    return render(request, 'logs.html', context=context)
