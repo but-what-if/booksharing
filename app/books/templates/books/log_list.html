@@ -2,7 +2,7 @@
 
 {% block content %}
 
-{% for log in logs_list %}
+{% for log in object_list %}
     PATH: {{ log.path }} <br> METHOD: {{ log.method }} <br> TIME: {{ log.time }} <br> <br>
 {% endfor %}
 

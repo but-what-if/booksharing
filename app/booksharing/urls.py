@@ -13,20 +13,19 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+import debug_toolbar
+from django.urls import include, path
 from django.contrib import admin
-from django.urls import path
 from books import views
+
+
+
 
 urlpatterns = [
     path('admin/', admin.site.urls, name='admin'),
-    path('', views.index, name='index'),
-    path('books/create/', views.books_create, name='books-create'),
-    path('books/list/', views.books_list, name='books-list'),
-    path('books/authors/create/', views.authors_create, name='authors-create'),
-    path('books/authors/list/', views.authors_list, name='authors-list'),
-    path('books/update/<int:pk>/', views.books_update, name='books-update'),
-    path('books/delete/<int:pk>/', views.books_delete, name='books-delete'),
-    path('books/authors/update/<int:pk>/', views.authors_update, name='authors-update'),
-    path('books/authors/delete/<int:pk>/', views.authors_delete, name='authors-delete'),
-    path('logs/', views.logs_list, name='logs')
+    path('accounts/', include('django.contrib.auth.urls')),
+    path('', views.Index.as_view(), name='index'),
+    path('__debug__/', include(debug_toolbar.urls)),
+    path('books/', include('books.urls')),
+    path('logs/', views.LogList.as_view(), name='logs')
 ]

@@ -15,4 +15,4 @@ def pre_save_edit_last_name_author(sender, instance, **kwargs):
 
 @receiver(pre_delete, sender=Author)
 def pre_delete_author(sender, instance, **kwargs):
-    raise Exception('Are you sure?')
+    pass
