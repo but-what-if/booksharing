@@ -1,14 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Booksharing</title>
-</head>
-<body>
+{% extends 'base.html' %}
+
+{% block content %}
 
 <h1>Share your book!</h1>
 <a href="{% url 'books-create' %}">Create a book</a><br>
 <a href="{% url 'authors-create' %}">Create an author</a>
 
-</body>
-</html>
+
+
+{% endblock content %}

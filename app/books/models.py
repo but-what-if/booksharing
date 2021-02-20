@@ -17,3 +17,9 @@ class Author(models.Model):
     country = models.CharField(max_length=128)
     gender = models.CharField(max_length=32)
     language = models.CharField(max_length=64)
+
+
+class Log(models.Model):
+    path = models.CharField(max_length=500)
+    method = models.CharField(max_length=32)
+    time = models.PositiveIntegerField()
