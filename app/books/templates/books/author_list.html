@@ -15,17 +15,17 @@
             <th>Language</th>
         </tr>
 
-        {% for author in object_list %}
+        {% for object in object_list %}
             <tr>
                 <td>{{ forloop.counter }}</td>
-                <td>{{ author.id }}</td>
-                <td>{{ author.first_name }}</td>
-                <td>{{ author.last_name }}</td>
-                <td>{{ author.date_of_birth }}</td>
-                <td>{{ author.date_of_death }}</td>
-                <td>{{ author.country }}</td>
-                <td>{{ author.gender }}</td>
-                <td>{{ author.language }}</td>
+                <td>{{ object.id }}</td>
+                <td>{{ object.first_name }}</td>
+                <td>{{ object.last_name }}</td>
+                <td>{{ object.date_of_birth }}</td>
+                <td>{{ object.date_of_death }}</td>
+                <td>{{ object.country }}</td>
+                <td>{{ object.gender }}</td>
+                <td>{{ object.language }}</td>
                 <td><a href="{% url 'authors-update' author.pk %}">
                     Edit</a></td>
             </tr>
