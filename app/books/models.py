@@ -9,6 +9,15 @@ class Author(models.Model):
     country = models.CharField(max_length=128)
     gender = models.CharField(max_length=32)
     language = models.CharField(max_length=64)
+    user = models.ForeignKey('accounts.User', on_delete=models.CASCADE,
+                             null=True, default=None)
+
+    @property
+    def full_name(self):
+        return f"{self.first_name} {self.last_name}"
+
+    def get_full_name(self):
+        return f"{self.first_name} {self.last_name}"
 
 
 class Category(models.Model):
@@ -20,8 +29,7 @@ class Book(models.Model):
     publish_year = models.PositiveIntegerField()
     review = models.CharField(max_length=512)
     condition = models.PositiveSmallIntegerField()
-    category = models.ForeignKey(Category, on_delete=models.SET_NULL,
-                               null=True, default=None)
+    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, default=None)
     user = models.ForeignKey('accounts.User', on_delete=models.CASCADE,
                              null=True, default=None)
     author = models.ForeignKey(Author, on_delete=models.SET_NULL,
