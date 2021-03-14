@@ -1,5 +1,5 @@
 from django.db import models
-
+from books import model_choices as mch
 
 class Author(models.Model):
     first_name = models.CharField(max_length=128)
@@ -40,3 +40,10 @@ class Log(models.Model):
     path = models.CharField(max_length=500)
     method = models.CharField(max_length=32)
     time = models.PositiveIntegerField()
+
+
+class RequestBook(models.Model):
+    book = models.ForeignKey(Book, on_delete=models.CASCADE)
+    recipient = models.ForeignKey('accounts.User', on_delete=models.CASCADE)
+    created = models.DateTimeField(auto_now_add=True)
+    status = models.PositiveSmallIntegerField(choices=mch.REQUEST_STATUSES)

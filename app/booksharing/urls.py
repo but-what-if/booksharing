@@ -18,7 +18,10 @@ from django.urls import include, path
 from django.contrib import admin
 from books import views
 
-from accounts.views import MyProfileView
+from django.conf import settings
+from django.conf.urls.static import static
+
+from accounts.views import MyProfileView, ContactUsView
 
 urlpatterns = [
     path('admin/', admin.site.urls, name='admin'),
@@ -26,6 +29,9 @@ urlpatterns = [
     path('', views.Index.as_view(), name='index'),
     path('__debug__/', include(debug_toolbar.urls)),
     path('accounts/my-profile/', MyProfileView.as_view(), name='my-profile'),
+    path('accounts/contact-us/', ContactUsView.as_view(), name='contact-us'),
     path('books/', include('books.urls')),
     path('logs/', views.LogList.as_view(), name='logs')
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

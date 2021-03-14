@@ -1,17 +1,14 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
+    <div class="row">
+        <div class="col">
 
-{% if user.is_authenticated %}
-  <h1>Share your book!</h1>
-  <a href="{% url 'books:create' %}">Create a book</a><br>
-  <a href="{% url 'books:authors-create' %}">Create an author</a>
-  <br>
-  Hi {{ user.username }}!
-  <p><a href="{% url 'logout' %}">Log Out</a></p>
-{% else %}
-  <p>You are not logged in</p>
-  <a href="{% url 'login' %}">Log In</a>
-{% endif %}
+            HELLO FROM INDEX
+            <br>
+            <img src="{% static 'img/python.png' %}">
+        </div>
+    </div>
 
 {% endblock content %}
