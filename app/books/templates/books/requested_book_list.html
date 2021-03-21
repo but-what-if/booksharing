@@ -22,9 +22,11 @@
                 <td>
                     {% if object.status == mch.STATUS_IN_PROGRESS %}
                         <a href="{% url 'books:requested-books-confirm' object.id %}">Confirm</a> |
-                        <a href="#">Reject</a>
+                        <a href="{% url 'books:requested-books-reject' object.id %}">Reject</a>
                     {% elif object.status == mch.STATUS_CONFIRMED %}
                         <a href="{% url 'books:sent-via-email' object.id %}">Sent Via Email</a>
+                    {% elif object.status == mch.STATUS_REJECT %}
+                        <p>The book was Rejected by owner!</p>
                     {% elif object.status == mch.STATUS_SENT_BACK_TO_OWNER %}
                         <a href="{% url 'books:owner-received' object.id %}">I received book back!</a>
                     {% endif %}

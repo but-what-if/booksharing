@@ -30,6 +30,10 @@ class BookCreate(FormUserKwargMixin, CreateView):
     success_url = reverse_lazy('books:my-books')
     form_class = BookForm
 
+    def get_success_url(self):
+        messages.success(self.request, 'Book was created!')
+        return super().get_success_url()
+
 
 class BookList(ListView):
     queryset = Book.objects.all().select_related('author')
@@ -70,10 +74,18 @@ class BookUpdate(FormUserKwargMixin, UpdateView):
     success_url = reverse_lazy('books:my-books')
     form_class = BookForm
 
+    def get_success_url(self):
+        messages.success(self.request, 'Book was updated!')
+        return super().get_success_url()
+
 
 class BookDelete(DeleteView):
     model = Book
     success_url = reverse_lazy('books:list')
+
+    def get_success_url(self):
+        messages.success(self.request, 'Book was deleted!')
+        return super().get_success_url()
 
 
 class RequestBookCreate(LoginRequiredMixin, View):
@@ -106,6 +118,13 @@ class RequestBookConfirm(_ChangeRequestBaseView):
     CURRENT_STATUS = mch.STATUS_IN_PROGRESS
     NEW_STATUS = mch.STATUS_CONFIRMED
     REDIRECT_NAME = 'books:requested-books'
+    MESSAGE = 'Book Request Was Rejected!'
+
+
+class RequestBookReject(_ChangeRequestBaseView):
+    CURRENT_STATUS = mch.STATUS_IN_PROGRESS
+    NEW_STATUS = mch.STATUS_REJECT
+    REDIRECT_NAME = 'books:my-requested-books'
     MESSAGE = 'Book Request Was Confirmed!'
 
 
@@ -138,6 +157,10 @@ class AuthorCreate(FormUserKwargMixin, CreateView):
     success_url = reverse_lazy('books:my-authors')
     form_class = AuthorForm
 
+    def get_success_url(self):
+        messages.success(self.request, 'Author was created!')
+        return super().get_success_url()
+
 
 class AuthorList(ListView):
     queryset = Author.objects.all()
@@ -157,10 +180,18 @@ class AuthorUpdate(FormUserKwargMixin, UpdateView):
     success_url = reverse_lazy('books:my-authors')
     form_class = AuthorForm
 
+    def get_success_url(self):
+        messages.success(self.request, 'Author was updated!')
+        return super().get_success_url()
+
 
 class AuthorDelete(DeleteView):
     model = Author
     success_url = reverse_lazy('books:authors-list')
+
+    def get_success_url(self):
+        messages.success(self.request, 'Author was updated!')
+        return super().get_success_url()
 
 
 class LogList(ListView):

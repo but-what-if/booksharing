@@ -11,6 +11,8 @@ urlpatterns = [
     path('list/requested-books/', views.RequestedBooks.as_view(), name='requested-books'),
     path('requested-books/confirm/<int:request_id>/', views.RequestBookConfirm.as_view(),
          name='requested-books-confirm'),
+    path('requested-books/reject/<int:request_id>/', views.RequestBookReject.as_view(),
+         name='requested-books-reject'),
     path('requested-books/sent-via-email/<int:request_id>/', views.RequestBookSentViaEmail.as_view(),
          name='sent-via-email'),
     path('requested-books/book-received/<int:request_id>/', views.RequestBookReceivedBook.as_view(),

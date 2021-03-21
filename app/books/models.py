@@ -19,9 +19,15 @@ class Author(models.Model):
     def get_full_name(self):
         return f"{self.first_name} {self.last_name}"
 
+    def __str__(self):
+        return f"{self.first_name} {self.last_name}"
+
 
 class Category(models.Model):
     name = models.CharField(max_length=128)
+
+    def __str__(self):
+        return self.name
 
 
 class Book(models.Model):
