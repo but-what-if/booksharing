@@ -43,7 +43,6 @@ class RequestBookAdmin(admin.ModelAdmin):
     # def get_readonly_fields(self, request, obj=None):
     #     readonly_fields = super().get_readonly_fields()
 
-
     def has_delete_permission(self, request, obj=None):
         return False
 

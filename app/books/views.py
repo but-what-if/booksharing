@@ -118,14 +118,14 @@ class RequestBookConfirm(_ChangeRequestBaseView):
     CURRENT_STATUS = mch.STATUS_IN_PROGRESS
     NEW_STATUS = mch.STATUS_CONFIRMED
     REDIRECT_NAME = 'books:requested-books'
-    MESSAGE = 'Book Request Was Rejected!'
+    MESSAGE = 'Book Request Was Confirmed!'
 
 
 class RequestBookReject(_ChangeRequestBaseView):
     CURRENT_STATUS = mch.STATUS_IN_PROGRESS
     NEW_STATUS = mch.STATUS_REJECT
-    REDIRECT_NAME = 'books:my-requested-books'
-    MESSAGE = 'Book Request Was Confirmed!'
+    REDIRECT_NAME = 'books:requested-books'
+    MESSAGE = 'Book Request Was Rejected!'
 
 
 class RequestBookSentViaEmail(_ChangeRequestBaseView):

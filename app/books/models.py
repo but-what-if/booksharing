@@ -1,6 +1,7 @@
 from django.db import models
 from books import model_choices as mch
 
+
 class Author(models.Model):
     first_name = models.CharField(max_length=128)
     last_name = models.CharField(max_length=128)
