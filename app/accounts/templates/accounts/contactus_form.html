@@ -3,18 +3,12 @@
 
 {% block content %}
 
-<h1>{{ message }}</h1>
-
-<p>Form to create a author</p>
+<h1>Contact Us</h1>
 
 <form method="post">
     {% csrf_token %}
     {{ form|crispy }}
     <button type="submit">Submit</button>
 </form>
-
-{% if form.instance.id %}
-    <a href="{% url 'books:authors-delete' form.instance.id %}">DELETE</a>
-{% endif %}
 
 {% endblock content %}
