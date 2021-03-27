@@ -35,6 +35,10 @@ class BookCreate(FormUserKwargMixin, CreateView):
         return super().get_success_url()
 
 
+class BookViewing(View):
+    template_name = 'books/book_viewing.html'
+
+
 class BookList(ListView):
     queryset = Book.objects.all().select_related('author')
 

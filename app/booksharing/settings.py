@@ -47,7 +47,6 @@ INSTALLED_APPS = [
     'accounts'
 ]
 
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -149,3 +148,14 @@ LOGIN_REDIRECT_URL = reverse_lazy('index')
 LOGOUT_REDIRECT_URL = reverse_lazy('index')
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+CELERY_BROKER_URL = 'amqp://localhost'
+
+from celery.schedules import crontab
+
+CELERY_BEAT_SCHEDULE = {
+    'debug': {
+        'task': 'accounts.tasks.debug',
+        'schedule': crontab(minute='*/1'),
+    },
+}

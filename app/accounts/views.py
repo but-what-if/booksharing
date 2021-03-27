@@ -1,29 +1,15 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.views.generic import UpdateView, CreateView, RedirectView
-from django.core.mail import send_mail
 from annoying.functions import get_object_or_None
 from django.contrib import messages
 
+from accounts.tasks import send_contact_us_email
 from accounts.models import User, ContactUs
 
 from accounts.forms import SignUpForm
 
 
-def send_contact_us_email(form_data):
-    message = f"""
-                Email from: {form_data["contact_to_email"]}
-                Name: {form_data["full_name"]}
-                Message: {form_data["message"]}
-            """
-
-    send_mail(
-        'Contact Us',
-        message,
-        'from@example.com',
-        ['to@example.com'],
-        fail_silently=False,
-    )
 
 
 class MyProfileView(LoginRequiredMixin, UpdateView):
@@ -49,7 +35,7 @@ class ContactUsView(CreateView):
 
     def form_valid(self, form):
         response = super().form_valid(form)
-        send_contact_us_email(form.cleaned_data)
+        send_contact_us_email.delay(form.cleaned_data)
         return response
 
 
