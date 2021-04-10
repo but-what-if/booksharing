@@ -1,11 +1,14 @@
 import csv
 import xlwt
+import json
 
 from books.models import Book, Author, Log, RequestBook
 from books.forms import BookForm, AuthorForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, ListView, UpdateView, DeleteView, TemplateView, View
+from django.views.generic import (
+    CreateView, ListView, UpdateView, DeleteView, TemplateView, View, DetailView,
+)
 from django.http import HttpResponse
 from books.utils import display
 from django.shortcuts import redirect, get_object_or_404
@@ -35,8 +38,14 @@ class BookCreate(FormUserKwargMixin, CreateView):
         return super().get_success_url()
 
 
-class BookViewing(View):
+class BookViewing(DetailView):
+    model = Book
     template_name = 'books/book_viewing.html'
+    queryset = Book.objects.all()
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        return queryset
 
 
 class BookList(ListView):
@@ -332,3 +341,16 @@ class DownloadXLSXAuthorView(View):
 
         wb.save(response)
         return response
+
+
+class BookApiList(View):
+    def get(self, request):
+        queryset = Book.objects.all()
+        results = [
+            {'id': book.id, 'title': book.title}
+            for book in queryset
+        ]
+        data = {
+            'results': results
+        }
+        return HttpResponse(json.dumps(data), content_type="application/json")

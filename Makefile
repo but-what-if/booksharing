@@ -16,3 +16,6 @@ makemigrations:
 
 flake8:
 	flake8 app/
+
+guni:
+    gunicorn booksharing.wsgi --workers=5 --bind 0.0.0.0:8000 --chdir=/home/user/booksharing/app --timeout=30 --max-requests=10000
