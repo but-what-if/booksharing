@@ -5,7 +5,6 @@ from accounts.tasks import send_activate_account_email
 from django.contrib.auth.tokens import default_token_generator
 
 
-
 class SignUpForm(forms.ModelForm):
     password1 = forms.CharField(min_length=6, widget=forms.PasswordInput())
     password2 = forms.CharField(min_length=6, widget=forms.PasswordInput())

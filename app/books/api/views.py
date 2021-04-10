@@ -1,4 +1,4 @@
-from rest_framework import generics, viewsets, filters
+from rest_framework import viewsets, filters
 from books.models import Book, Author, Category
 from books.api.serializers import BookSerializer, AuthorSerializer, CategorySerializer
 from books.api.filters import BookFilter, AuthorFilter, CategoryFilter

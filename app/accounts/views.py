@@ -11,8 +11,6 @@ from accounts.models import User, ContactUs
 from accounts.forms import SignUpForm
 
 
-
-
 class MyProfileView(LoginRequiredMixin, UpdateView):
     queryset = User.objects.all()
     success_url = reverse_lazy('index')

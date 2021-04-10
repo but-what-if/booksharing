@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 from django.urls import reverse_lazy
+from celery.schedules import crontab
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -156,7 +157,6 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 CELERY_BROKER_URL = 'amqp://localhost'
 
-from celery.schedules import crontab
 
 CELERY_BEAT_SCHEDULE = {
     'debug': {
