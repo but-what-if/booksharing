@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row">
+        <div class="col-2"><img class="w-100 h-100" src="{% if object.cover %} {{ object.cover.url }} {% endif %}" alt="Book Cover"></div>
+        <div class="col-10">
+            <h4 class="text-primary"><span>Title:</span> {{ object.title }}</h4>
+            <h4 class="text-primary"><span>Author:</span> {{ object.author }}</h4>
+            <h4 class="text-primary"><span>Category:</span> {{ object.category }}</h4>
+            <h4 class="text-primary"><span>Publish year:</span> {{ object.publish_year }}</h4>
+            <h4 class="text-primary"><span>Review:</span> {{ object.review }}</h4>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock content %}

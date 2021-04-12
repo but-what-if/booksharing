@@ -5,6 +5,7 @@ app_name = 'books'
 
 urlpatterns = [
     path('create/', views.BookCreate.as_view(), name='create'),
+    path('viewing/<int:pk>/', views.BookViewing.as_view(), name='book-viewing'),
     path('list/', views.BookList.as_view(), name='list'),
     path('list/my-books/', views.MyBooksList.as_view(), name='my-books'),
     path('list/my-requested-books/', views.MyRequestedBooks.as_view(), name='my-requested-books'),
