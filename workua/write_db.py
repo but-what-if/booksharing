@@ -3,16 +3,14 @@ import sqlite3
 from parser import result
 
 
-con = sqlite3.connect('jobs.db')
+con = sqlite3.connect('jobs_base.db')
 cur = con.cursor()
 
-cur.execute('''CREATE TABLE jobs
-               (id, title, salary, description)''')
+cur.execute('''CREATE TABLE jobs_base
+               (id VARCHAR2, title VARCHAR2, salary VARCHAR2, description VARCHAR2)''')
 for item in result:
     salary = ''.join(''.join(item['job_salary'].split(' ')).split(' '))
-    # cur.execute("INSERT INTO jobs VALUES ({0},{1},{2},{3})".format(item['job_id'], item['job_title'], salary, item['job_description']))
-    cur.execute(f"INSERT INTO jobs VALUES ({item['job_id']}, {item['job_title']}, {salary}, {item['job_description']})")
-    # cur.execute("INSERT INTO jobs VALUES (%s, %s, %s, %s)", item['job_id'], item['job_title'], salary, item['job_description'])
+    cur.execute(f"INSERT INTO jobs_base VALUES (?,?,?,?)", (f"{item['job_id']}", f"{item['job_title']}", f"{salary}", f"{item['job_description']}"))
 
 con.commit()
 
