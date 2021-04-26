@@ -53,7 +53,7 @@ class BookList(ListView):
 
     def get_queryset(self):
         queryset = super().get_queryset()
-        return queryset.exclude(user=self.request.user)
+        return queryset.exclude(user__id=self.request.user.id)
 
 
 class MyBooksList(LoginRequiredMixin, ListView):

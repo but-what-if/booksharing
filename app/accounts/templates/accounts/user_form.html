@@ -2,18 +2,24 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
+      <div class="row">
+        <div class="col-4">
 
-    <h1>My profile</h1>
+            <h1>My profile</h1>
 
-    <img class="rounded-circle"
-             width="20" height="20"
-             src="{{ request.user.avatar.url }}"
-             data-holder-rendered="true">
+            <img class="rounded-circle"
+                     width="20" height="20"
+                     src="{{ request.user.avatar_url }}"
+                     data-holder-rendered="true">
 
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ crispy form }}
-        <button type="submit">Submit</button>
-    </form>
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <button type="submit">Submit</button>
+            </form>
+
+        </div>
+      </div>
+
 
 {% endblock content %}
