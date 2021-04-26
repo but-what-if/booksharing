@@ -8,8 +8,8 @@ def test_profile(client):
     assert response.status_code == 302
 
     payload = {
-        'firstname': 'adminDadmin.com',
-        'lastname': 'adminDadmin.com',
+        'first_name': 'adminDadmin.com',
+        'last_name': 'adminDadmin.com',
     }
     response = client.post(url, data=payload)
     assert response.status_code == 302
